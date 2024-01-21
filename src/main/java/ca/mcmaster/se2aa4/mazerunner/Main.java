@@ -20,7 +20,6 @@ public class Main {
             logger.info(config);
             Maze theMaze = new Maze(config.inputFile()); //generates the maze object
             String path = null;
-            boolean correctPath = false;
 
             if(config.inputPath==null){
                 MazeSolver theSolver = new MazeSolver(theMaze); //chooses a method to solve the maze
@@ -29,14 +28,7 @@ public class Main {
             } 
             else{
                 PathCheck theCheck = new PathCheck(theMaze, config.inputPath());
-                correctPath = theCheck.result();
-
-                if(correctPath){
-                    System.out.println("correct path");
-                }
-                else{
-                    System.out.println("incorrect path");
-                }
+                theCheck.result();
             }
             
         } catch(ParseException pe) {

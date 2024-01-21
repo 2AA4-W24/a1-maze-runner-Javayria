@@ -4,7 +4,15 @@ public class PathCheck {
     public PathCheck(Maze theMaze, String inputPath){
     }
     
-    public boolean result(){
-        return false;
+    public void result(){
+        boolean correctPath = false;
+        if(correctPath){
+            System.out.println("correct path");
+        }
+        else{
+            System.out.println("incorrect path");
+        }
     }
 }
+
+
