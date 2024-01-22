@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class MazeSolver {
     private final Maze maze;
-    private String compPath;
+    public String compPath = "";
     private String direction;
     private Position enter;
     private Position current;
@@ -12,7 +12,8 @@ public class MazeSolver {
     public MazeSolver(Maze theMaze){
         this.maze = theMaze;
         this.enter = theMaze.enter;
-        this.exit = theMaze.exit;  
+        this.exit = theMaze.exit; 
+        setInitialDirection(); 
     }
 
     public void setInitialDirection(){
@@ -24,7 +25,7 @@ public class MazeSolver {
         }
     }
 
-    public char stepForward(){
+    public String stepForward(){
         if(direction.equals("N")){
             current.y--;
         }
@@ -38,15 +39,26 @@ public class MazeSolver {
             current.x--;
         }
 
-        char step = 'F';
+        String step = "F";
         return step;  
     }
 
-    public String solve(){
-        String result = "doesn't have one...yet";
-        return result;
+    public void solve(){
+        //condition to make the next step
+        current = enter;
+        String step;
+        while(!endReached()){
+            step = stepForward();
+            this.compPath = this.compPath + step;
+        }
     }
         
-    public void traverseMaze(){
+    public boolean endReached(){
+        if((current.x == exit.x) && (current.y == exit.y)){
+            return true;
+        } 
+        else{
+            return false;
+        }
     }
 }

@@ -19,13 +19,13 @@ public class Main {
             Configuration config = config(args);
             logger.info(config);
             Maze theMaze = new Maze(config.inputFile()); //generates the maze object
-            String path = null;
             theMaze.printMaze();
 
             if(config.inputPath==null){
+                System.out.println("Computing path....");
                 MazeSolver theSolver = new MazeSolver(theMaze); //chooses a method to solve the maze
-                path = theSolver.solve();
-                System.out.println(path);
+                theSolver.solve();
+                System.out.println(theSolver.compPath);
             } 
             else{
                 PathCheck theCheck = new PathCheck(theMaze, config.inputPath());
