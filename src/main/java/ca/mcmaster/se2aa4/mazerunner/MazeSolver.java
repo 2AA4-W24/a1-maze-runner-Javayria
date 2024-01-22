@@ -16,6 +16,18 @@ public class MazeSolver {
         if(direction.equals("N")){
             current.y--;
         }
+        else if(direction.equals("S")){
+            current.y++;
+        }
+        else if(direction.equals("E")){
+            current.x++;
+        }
+        else{
+            current.x--;
+        }
+        
+        char step = 'F';
+        return step;  
     }
         
     public String solve(){
