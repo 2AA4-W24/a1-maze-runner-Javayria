@@ -20,6 +20,7 @@ public class Main {
             logger.info(config);
             Maze theMaze = new Maze(config.inputFile()); //generates the maze object
             String path = null;
+            theMaze.printMaze();
 
             if(config.inputPath==null){
                 MazeSolver theSolver = new MazeSolver(theMaze); //chooses a method to solve the maze
