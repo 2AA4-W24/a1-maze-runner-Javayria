@@ -9,8 +9,8 @@ public class Maze {
     private char[][] maze;
     private int h;
     private int w;
-    Position enter;
-    Position exit;
+    Position enter = new Position(0,0);
+    Position exit = new Position(0,0);
    
 
     public Maze(String inputFile) {
@@ -48,6 +48,8 @@ public class Maze {
            this.maze = m;
            this.h = rows;
            this.w = columns;
+           leftEntry();
+           rightEntry();
 
         } catch (FileNotFoundException e){
             System.out.println("Error with reading file.");
@@ -56,12 +58,12 @@ public class Maze {
         }
     }
 
-    public void setEntry(){
+    public void leftEntry(){
         enter.x = 0;
         enter.y = 2;
     }
 
-    public void setExit(){
+    public void rightEntry(){
         exit.x = this.w-1;
         exit.y = 2;
     }
@@ -74,12 +76,4 @@ public class Maze {
             System.out.print("\n");
         }
     }
-
-
-
-
- 
-
-
-
 }
