@@ -56,6 +56,19 @@ public class Maze {
         }
     }
 
+    public void setEntry(){
+        enter.x = 0;
+        enter.y = 2;
+    }
+
+
+    public void setExit(){
+        exit.x = this.w-1;
+        exit.y = 2;
+    }
+
+
+
     public void printMaze(){
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
@@ -64,6 +77,9 @@ public class Maze {
             System.out.print("\n");
         }
     }
+
+
+
 
  
 

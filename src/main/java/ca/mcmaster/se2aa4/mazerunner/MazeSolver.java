@@ -24,7 +24,6 @@ public class MazeSolver {
         }
     }
 
-
     public char stepForward(){
         if(direction.equals("N")){
             current.y--;
@@ -43,15 +42,11 @@ public class MazeSolver {
         return step;  
     }
 
-    public void solve(){
-        SolveMethod method = new SolveMethod();
-
-
-    }
-        
-    public String traverseMaze(){
-
+    public String solve(){
         String result = "doesn't have one...yet";
         return result;
+    }
+        
+    public void traverseMaze(){
     }
 }
