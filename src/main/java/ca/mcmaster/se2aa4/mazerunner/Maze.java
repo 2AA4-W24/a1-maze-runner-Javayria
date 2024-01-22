@@ -9,10 +9,8 @@ public class Maze {
     private char[][] maze;
     private int h;
     private int w;
-    private int entry_i = 0;
-    private int entry_j;
-    private int exit_i = w-1;
-    private int exit_j;
+    Position enter;
+    Position exit;
    
 
     public Maze(String inputFile) {

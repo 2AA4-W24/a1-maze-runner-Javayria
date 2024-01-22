@@ -16,16 +16,8 @@ public class MazeSolver {
         if(direction.equals("N")){
             current.y--;
         }
-        else if{direction.equals("S"){
-            current.y++;
-            
-        }
-
-        }
-
-
     }
-
+        
     public String solve(){
         String result = "doesn't have one...yet";
         return result;
