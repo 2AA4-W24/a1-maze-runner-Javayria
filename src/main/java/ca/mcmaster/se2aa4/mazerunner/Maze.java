@@ -7,10 +7,12 @@ import java.io.IOException;
 
 public class Maze {
     private char[][] maze;
-    private int entry_x;
-    private int entry_y;
-    private int exit_x;
-    private int exit_y;
+    private int h;
+    private int w;
+    private int entry_i = 0;
+    private int entry_j;
+    private int exit_i = w-1;
+    private int exit_j;
    
 
     public Maze(String inputFile) {
@@ -27,6 +29,7 @@ public class Maze {
             }
 
             char[][] m = new char[rows][columns];
+
 
             // go back to the beginning of the file
             buff.close();
@@ -45,6 +48,9 @@ public class Maze {
            file.close();
 
            this.maze = m;
+           this.h = rows;
+           this.w = columns;
+
         } catch (FileNotFoundException e){
             System.out.println("Error with reading file.");
         } catch (IOException e){
@@ -60,4 +66,9 @@ public class Maze {
             System.out.print("\n");
         }
     }
+
+ 
+
+
+
 }
