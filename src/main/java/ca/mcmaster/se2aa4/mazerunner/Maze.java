@@ -61,13 +61,10 @@ public class Maze {
         enter.y = 2;
     }
 
-
     public void setExit(){
         exit.x = this.w-1;
         exit.y = 2;
     }
-
-
 
     public void printMaze(){
         for (int i = 0; i < maze.length; i++) {
