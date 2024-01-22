@@ -56,6 +56,19 @@ public class Main {
         return new Configuration(inputFile, inputPath);        
     }
 
+    private static boolean validPathFormat(String inputPath){
+        boolean valid=true;
+        for (int i = 0 ; i < inputPath.length() ; i++) {
+            char c = inputPath.charAt(i);
+            if (!Character.isDigit(c)){
+                if ((c != 'F') && (c != 'R') && (c != 'L')){
+                    valid = false;
+                }
+            }
+        }
+        return valid;
+    }
+
     //data class
     private record Configuration(String inputFile, String inputPath) {
         public Configuration {
@@ -64,19 +77,10 @@ public class Main {
                 throw new IllegalArgumentException("Given file does not exist.");
             } 
             
-            //verify the path sequence as viable
+            //take the path_sequence input from user and verify if it is provided in a valid format
             if (inputPath != null){
-                boolean valid=true;
-                for (int i = 0 ; i < inputPath.length() ; i++) {
-                    char c = inputPath.charAt(i);
-                    if (!Character.isDigit(c)){
-                        if ((c != 'F') && (c != 'R') && (c != 'L')){
-                            valid = false;
-                        }
-                    }
-                }
-                if(valid == false){
-                    throw new IllegalArgumentException("Path sequence is not provided in a valid form.");
+                if(!validPathFormat(inputPath)){
+                    throw new IllegalArgumentException("Path is not provided in a valid form.");
                 }
             }  
         }
