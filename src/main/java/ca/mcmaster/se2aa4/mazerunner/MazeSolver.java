@@ -11,8 +11,6 @@ public class MazeSolver {
 
     public MazeSolver(Maze theMaze){
         this.maze = theMaze;
-        this.enter = theMaze.enter;
-        this.exit = theMaze.exit; 
         setInitialDirection(); 
     }
 

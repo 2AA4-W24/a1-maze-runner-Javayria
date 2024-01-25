@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//responsible for loading the file and generating a maze (would be smart to split up into two classes ReadMaze and LoadMaze)
 public class MazeLoader {   
     private List<String> lines = new ArrayList<>();
     private String input;
