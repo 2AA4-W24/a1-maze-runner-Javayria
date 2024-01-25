@@ -20,8 +20,8 @@ public class Main {
             logger.info(config);
             Maze theMaze = new Maze(config.inputFile()); //generates the maze object
             theMaze.printMaze();
-
-            if(config.inputPath==null){
+            /*
+             * if(config.inputPath==null){
                 System.out.println("Computing path....");
                 MazeSolver theSolver = new MazeSolver(theMaze); //chooses a method to solve the maze
                 theSolver.solve();
@@ -31,6 +31,9 @@ public class Main {
                 PathCheck theCheck = new PathCheck(theMaze, config.inputPath());
                 theCheck.result();
             }
+             * 
+             * 
+             */
             
         } catch(ParseException pe) {
             System.err.println(pe.getMessage());
@@ -56,7 +59,8 @@ public class Main {
         }
         return new Configuration(inputFile, inputPath);        
     }
-
+    
+    //finalized check for PathFormat
     private static boolean validPathFormat(String inputPath){
         boolean valid=true;
         for (int i = 0 ; i < inputPath.length() ; i++) {
@@ -66,7 +70,7 @@ public class Main {
                     valid = false;
                 }
             }
-        }
+        } 
         return valid;
     }
 

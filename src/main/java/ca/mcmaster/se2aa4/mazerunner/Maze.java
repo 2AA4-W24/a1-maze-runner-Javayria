@@ -1,61 +1,15 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 public class Maze {
-    private char[][] maze;
+    private Cell[][] maze;
     private int h;
     private int w;
     Position enter = new Position(0,0);
     Position exit = new Position(0,0);
-   
 
-    public Maze(String inputFile) {
-        try (BufferedReader buff = new BufferedReader(new FileReader(inputFile))) {
-
-            int rows = 0;
-            int columns = 0;
-            String line;
-
-            //get the rows (height) and columns (width)
-            while ((line = buff.readLine()) != null) {
-                rows++;
-                columns = Math.max(columns, line.length());
-            }
-
-            char[][] m = new char[rows][columns];
-
-
-            // go back to the beginning of the file
-            buff.close();
-            BufferedReader file = new BufferedReader(new FileReader(inputFile));
-
-            for(int i = 0; i < rows; i++){
-
-              //loop through the columns of each row
-              for(int j = 0; j < columns; j++){
-                 m[i][j] = (char) file.read();
-              }
-
-              //ignore any extra characters 
-              file.readLine();
-           }
-           file.close();
-
-           this.maze = m;
-           this.h = rows;
-           this.w = columns;
-           leftEntry();
-           rightEntry();
-
-        } catch (FileNotFoundException e){
-            System.out.println("Error with reading file.");
-        } catch (IOException e){
-            System.out.println("Error with reading file.");
-        }
+    public Maze(String inputFile){
+        MazeLoader loader = new MazeLoader();
+        this.maze = loader.generate(inputFile);
     }
 
     public void leftEntry(){
@@ -68,12 +22,19 @@ public class Maze {
         exit.y = 2;
     }
 
+    public Cell cellAt(int x, int y) { return maze[y][x]; }
+
+
     public void printMaze(){
+        int rows = maze.length;
+        int columns = maze[0].length;
+        System.out.println("rows: "+ rows);
+        System.out.println("columns: "+ columns);
         for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[i].length; j++) {
-                System.out.print((char)maze[i][j]);
+            for (int j = 0; j < maze[0].length; j++) {
+                System.out.print(maze[i][j]);
             }
-            System.out.print("\n");
+            System.out.print("\n"); 
         }
     }
 }
