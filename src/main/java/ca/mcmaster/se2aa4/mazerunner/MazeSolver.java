@@ -11,19 +11,19 @@ public class MazeSolver {
 
     public MazeSolver(Maze theMaze){
         this.maze = theMaze;
-        setInitialDirection(); 
+        //setInitialDirection(); 
     }
 
-    public void setInitialDirection(){
+    /*public void setInitialDirection(){
         if(enter.x == 0){
             this.direction = "E";
         }
         else{
             this.direction = "F";
         }
-    }
+    / }*/
 
-    public String stepForward(){
+    /*public String stepForward(){
         if(direction.equals("N")){
             current.y--;
         }
@@ -39,24 +39,21 @@ public class MazeSolver {
 
         String step = "F";
         return step;  
-    }
+    }*/
 
     public void solve(){
         //condition to make the next step
         current = enter;
         String step;
-        while(!endReached()){
-            step = stepForward();
-            this.compPath = this.compPath + step;
-        }
+        
     }
         
-    public boolean endReached(){
+    /*public boolean endReached(){
         if((current.x == exit.x) && (current.y == exit.y)){
             return true;
         } 
         else{
             return false;
         }
-    }
+     }*/
 }
