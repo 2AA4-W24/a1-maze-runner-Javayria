@@ -7,8 +7,8 @@ public class Maze {
     private final int height;
 
     //Create a class for enterances and store their Location (Position + Direction)
-    Position EAST_ENTRY;
-    Position WEST_ENTRY;
+    Location EAST_ENTRY;
+    Location WEST_ENTRY;
 
     public Maze(String inputFile){
         MazeLoader loader = new MazeLoader();
@@ -36,7 +36,7 @@ public class Maze {
         for(int i = 0; i < height; i++){
             Cell cell = maze[i][width-1];
             if(cell.equals(Cell.PASS)){
-                this.EAST_ENTRY = new Position(i,width-1);
+                this.EAST_ENTRY = new Location(i,width-1);
             }
         }
         System.out.println("East Entrance: " + EAST_ENTRY.toString());
@@ -46,14 +46,13 @@ public class Maze {
         for(int i = 0; i < height; i++){
             Cell cell = maze[i][0];
             if(cell.equals(Cell.PASS)){
-                this.WEST_ENTRY = new Position(i,0);
+                this.WEST_ENTRY = new Location(i,0);
             }
         }
         System.out.println("West Entrance: " + WEST_ENTRY.toString());
     }
 
-    public Cell cellAt(int x, int y) { return maze[y][x]; }
-
+    public Cell cellAt(Location location) { return this.maze[location.x][location.y]; }
 
     public void printMaze(){
         int rows = maze.length;
