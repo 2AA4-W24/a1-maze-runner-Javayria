@@ -4,13 +4,8 @@ public class Location{
     int x;
     int y;
 
-    public Location(){
+    public Location(int x, int y){
         this.x = x;
         this.y = y;  
     }
-
-   //Position (direction + points) -> Location (direction) -> Direction (enum)
-
-
-    
 }
