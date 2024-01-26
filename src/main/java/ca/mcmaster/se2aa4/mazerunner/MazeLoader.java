@@ -33,7 +33,7 @@ public class MazeLoader {
             System.out.println("Error with reading file.");
         }
     }
-
+  
     private void fillCells(Cell[][] grid){
         
         for(int i = 0; i < grid.length; i++){  //loop through rows

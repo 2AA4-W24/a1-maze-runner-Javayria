@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 //stores the Maze as an entity along with its data (immutable class)
 public class Maze {
-    private final Cell[][] maze;
+    private final Cell[][] maze; //DEFINED [ROWS][COLUMNS]
     private final int width;
     private final int height;
 
