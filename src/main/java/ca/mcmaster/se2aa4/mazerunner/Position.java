@@ -12,7 +12,7 @@ public class Position{
     public boolean equals(Position position){
         return ((this.coordinates == position.coordinates) && (this.direction == position.direction));
     }
-
+    
     public Direction getDirection(){
         return direction;
     }
