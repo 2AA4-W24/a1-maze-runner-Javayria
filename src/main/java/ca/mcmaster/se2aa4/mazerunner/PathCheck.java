@@ -1,6 +1,8 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class PathCheck {
+public class PathCheck{
+    //IMPLEMENT AS INHERITANCE CLASS OF MAZESOLVER AND HAVE INTERFACE TO DECIDE WHICH TO DO
+    String Path;
     public PathCheck(Maze theMaze, String inputPath){
     }
     
