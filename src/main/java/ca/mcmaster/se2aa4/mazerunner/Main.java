@@ -20,8 +20,8 @@ public class Main {
             logger.info(config);
             Maze theMaze = new Maze(config.inputFile()); //generates the maze object
             theMaze.printMaze();
-            Explorer explorer = new Explorer(theMaze);
-            explorer.moveForward();
+            MazeSolver theSolver = new MazeSolver(theMaze);
+            theSolver.RightHandRule();
 
             /*
              * if(config.inputPath==null){
