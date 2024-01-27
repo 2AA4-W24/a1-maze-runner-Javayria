@@ -8,26 +8,31 @@ public class Location{
         this.x = x;
         this.y = y;  
     }
+    
+    public boolean equals(Location location){
+        return((x==location.x) && (y==location.y));
+    }
 
-    public Location getNorth(){
+    protected Location getNorth(){
         return new Location(x-1, y);
     }
 
-    public Location getSouth(){
+    protected Location getSouth(){
         return new Location(x+1, y);
     }
 
-    public Location getEast(){
+    protected Location getEast(){
         return new Location(x, y+1);
     }
 
-    public Location getWest(){
+    protected Location getWest(){
         return new Location(x, y-1);
     }
 
+
     @Override
     public String toString() {
-        return "Coordinates: (" +
+        return "Location: (" +
          "x=" + x + 
             ", y= " + y + 
             ")";

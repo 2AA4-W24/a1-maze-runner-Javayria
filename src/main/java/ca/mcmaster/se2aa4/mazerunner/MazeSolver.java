@@ -1,59 +1,73 @@
 package ca.mcmaster.se2aa4.mazerunner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class MazeSolver {
+public class MazeSolver{
+    private static final Logger logger = LogManager.getLogger();
+
     private final Maze maze;
-    public String compPath = "";
-    private String direction;
-    private Position enter;
+    public String path = "";
     private Position current;
-    private Position exit;
-    
+    private Position EXIT;
 
+    //half of the Maze
     public MazeSolver(Maze theMaze){
         this.maze = theMaze;
-        //setInitialDirection(); 
+        this.current = new Position(theMaze.getEntry(), Direction.EAST);
+        System.out.println("Starting At: " + current.toString());
+        this.EXIT = new Position(theMaze.getExit(), Direction.EAST);
     }
 
-    /*public void setInitialDirection(){
-        if(enter.x == 0){
-            this.direction = "E";
-        }
-        else{
-            this.direction = "F";
-        }
-    / }*/
+    public void moveTest(){
+        current.turnRight();
+        System.out.println(current.toString());
+        current.turnAround();
+        System.out.println(current.toString());
+    } 
 
-    /*public String stepForward(){
-        if(direction.equals("N")){
-            current.y--;
-        }
-        else if(direction.equals("S")){
-            current.y++;
-        }
-        else if(direction.equals("E")){
-            current.x++;
-        }
-        else{
-            current.x--;
-        }
+    public void RightHandRule(){
+        String step = "";
+        do{
+            if(checkRight()){
+                step = current.moveRightForward();  
+            } 
+            else if(checkFront()){
+                step = current.moveForward();
+            } 
+            else if(checkLeft()){
+                step = current.turnLeft();   
+            }
+            else{
+                step = current.turnAround();
+            }
+            path += step;
 
-        String step = "F";
-        return step;  
-    }*/
+        } while(!isAtExit());
 
-    public void solve(){
-        //condition to make the next step
-        current = enter;
-        String step;
-        
+        System.out.println("Computed Path: " + path);
+        System.out.println("Finished at: " + current.toString());
     }
-        
-    /*public boolean endReached(){
-        if((current.x == exit.x) && (current.y == exit.y)){
-            return true;
-        } 
-        else{
-            return false;
-        }
-     }*/
+
+    private boolean isAtExit(){
+        return current.equals(EXIT);
+    }
+
+    private boolean checkFront(){
+        Cell frontCell = maze.cellAt(current.getForwardLocation());
+        return frontCell.equals(Cell.PASS); 
+    }
+
+    private boolean checkRight(){
+        current.turnRight();
+        boolean look = checkFront();   
+        current.turnLeft();
+        return look;            
+    }
+
+    private boolean checkLeft(){
+        current.turnLeft();
+        boolean look = checkFront();   
+        current.turnRight();
+        return look;       
+    }
 }
