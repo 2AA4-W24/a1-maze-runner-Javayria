@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 //represents what type of cell it is within the maze grid
 public enum Cell {
-    WALL('#'), PASS(' '), START('S'), END('E');
+    WALL('#'), PASS(' ');
 
     private final char character;
 
@@ -21,5 +21,4 @@ public enum Cell {
     @Override
     public String toString() { return "" + character; }
     
-
 }

@@ -4,6 +4,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class Explorer {
     private Maze maze;
     public Position position;
+    public Location location;
     public Direction facingDirection;
 
 
@@ -11,8 +12,8 @@ public class Explorer {
         this.maze = maze;
         this.position = new Position(maze.WEST_ENTRY, Direction.EAST);
         this.facingDirection = Direction.EAST;
+        this.location = position.getLocation();
         }
-
 
     public void moveForward(){
         position.updateCoordinates();
@@ -53,4 +54,5 @@ public class Explorer {
         }
         System.out.println("L");
     }
+    
 }

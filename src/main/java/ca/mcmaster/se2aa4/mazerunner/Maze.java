@@ -52,6 +52,14 @@ public class Maze {
         System.out.println("West Entrance: " + WEST_ENTRY.toString());
     }
 
+    public Location getEntry(){
+        return WEST_ENTRY;
+    }
+
+    public Location getExit(){
+        return EAST_ENTRY;
+    }
+
     public Cell cellAt(Location location) { return this.maze[location.x][location.y]; }
 
     public void printMaze(){
