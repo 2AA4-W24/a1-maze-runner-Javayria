@@ -3,8 +3,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class MazeSolver{
-    private static final Logger logger = LogManager.getLogger();
-
     private final Maze maze;
     public String path = "";
     private Position current;
@@ -17,13 +15,6 @@ public class MazeSolver{
         System.out.println("Starting At: " + current.toString());
         this.EXIT = new Position(theMaze.getExit(), Direction.EAST);
     }
-
-    public void moveTest(){
-        current.turnRight();
-        System.out.println(current.toString());
-        current.turnAround();
-        System.out.println(current.toString());
-    } 
 
     public void RightHandRule(){
         String step = "";

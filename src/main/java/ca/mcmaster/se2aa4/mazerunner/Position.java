@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Position{
-    private static final Logger logger = LogManager.getLogger();
 
     private Location coordinates;
     private Direction direction;
@@ -18,14 +17,6 @@ public class Position{
         return ((coordinates.equals(position.coordinates)) && (direction == position.direction));
     }
     
-    public Direction getDirection(){
-        return direction;
-    }
-
-    public Location getLocation(){
-        return coordinates;
-    }
-
     protected Location getForwardLocation(){
         Location next;
         if(direction == Direction.NORTH){

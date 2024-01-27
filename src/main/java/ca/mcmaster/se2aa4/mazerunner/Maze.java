@@ -39,7 +39,6 @@ public class Maze {
                 this.EAST_ENTRY = new Location(i,width-1);
             }
         }
-        System.out.println("East Entrance: " + EAST_ENTRY.toString());
     }
 
     private void setWestEntry(){
@@ -49,7 +48,6 @@ public class Maze {
                 this.WEST_ENTRY = new Location(i,0);
             }
         }
-        System.out.println("West Entrance: " + WEST_ENTRY.toString());
     }
 
     public Location getEntry(){
