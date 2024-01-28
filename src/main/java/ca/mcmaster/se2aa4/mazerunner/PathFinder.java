@@ -6,18 +6,16 @@ public class PathFinder{
     private Maze maze;
     public String path = "";
     private Position current;
-    private final Position ENTRY;
     private final Position EXIT;
 
     public PathFinder(Maze theMaze){
         this.maze = theMaze;
-        this.ENTRY= new Position(maze.getEntry(), Direction.EAST);
-        System.out.println("Starting At: " + ENTRY.toString());
+        this.current= new Position(maze.getEntry(), Direction.EAST);
         this.EXIT = new Position(maze.getExit(), Direction.EAST);
     }
+    
 
-    public void RightHandRule(){
-        current = ENTRY;
+    public String RightHandRule(){
         String step = "";
         do{
             if(checkRight()){
@@ -36,9 +34,7 @@ public class PathFinder{
             path += step;
 
         } while(!isAtExit());
-
-        System.out.println("Computed Path: " + path);
-        System.out.println("Finished at: " + current.toString());
+        return path;
     }
 
     private boolean isAtExit(){
