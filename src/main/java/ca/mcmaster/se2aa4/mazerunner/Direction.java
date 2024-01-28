@@ -71,6 +71,8 @@ public enum Direction {
     protected abstract Direction yourRight();
     protected abstract Direction yourLeft();
     protected abstract Direction oppositeDirection();
+
+
 }
 
 

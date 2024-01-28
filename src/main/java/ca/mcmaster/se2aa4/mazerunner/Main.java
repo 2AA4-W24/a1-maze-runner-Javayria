@@ -16,8 +16,10 @@ public class Main {
             logger.info(config);
             Maze theMaze = new Maze(config.inputFile()); //generates the maze object
             theMaze.printMaze();
-            MazeSolver theSolver = new MazeSolver(theMaze);
-            theSolver.RightHandRule();
+            PathFinder find = new PathFinder(theMaze);
+            find.RightHandRule();
+            System.out.println(theMaze.getEntry().toString());
+            PathCheck check = new PathCheck(theMaze, config.inputPath());
 
             /*
              * if(config.inputPath==null){
@@ -58,6 +60,8 @@ public class Main {
         }
         return new Configuration(inputFile, inputPath);        
     }
+
+    //return new Configuration(inputFile)
     
     //finalized check for PathFormat
     private static boolean validPathFormat(String inputPath){

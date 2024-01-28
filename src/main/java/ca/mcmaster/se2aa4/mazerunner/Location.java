@@ -29,7 +29,6 @@ public class Location{
         return new Location(x, y-1);
     }
 
-
     @Override
     public String toString() {
         return "Location: (" +
