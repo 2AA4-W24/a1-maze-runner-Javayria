@@ -29,15 +29,12 @@ public class PathCheck{
         String step = "";
         for(char next: inputPath.toCharArray()){
             step = String.valueOf(next);
-            System.out.println(step);
 
             if(!(step.equals("F"))){
                 currPosition.move(step);
-                System.out.println(step);
             }
             else if(step.equals("F") && (checkFront())){
                 currPosition.move(step);
-                System.out.println(step);
             }
             else{
                 return false;
