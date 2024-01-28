@@ -46,6 +46,7 @@ public class Maze {
         for(int i = 0; i < height; i++){
             Cell cell = maze[i][0];
             if(cell.equals(Cell.PASS)){
+
                 return new Location(i,0);
             }
         }

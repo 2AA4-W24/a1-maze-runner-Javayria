@@ -59,5 +59,6 @@ public record Configuration(String inputFile, String inputPath) {
         } 
         return valid;
     }
+
 } 
 
