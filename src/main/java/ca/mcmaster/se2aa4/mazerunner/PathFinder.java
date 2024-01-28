@@ -13,7 +13,6 @@ public class PathFinder{
         this.current= new Position(maze.getEntry(), Direction.EAST);
         this.EXIT = new Position(maze.getExit(), Direction.EAST);
     }
-    
 
     public String RightHandRule(){
         String step = "";
@@ -34,7 +33,7 @@ public class PathFinder{
             path += step;
 
         } while(!isAtExit());
-        return path;
+        return FormatPath.compact(path);
     }
 
     private boolean isAtExit(){
