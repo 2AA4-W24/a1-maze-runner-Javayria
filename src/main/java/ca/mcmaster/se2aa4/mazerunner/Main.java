@@ -14,11 +14,12 @@ public class Main {
         try {
             Configuration config = config(args);
             logger.info(config);
-            Maze maze = new Maze(config.inputFile());
-            PathFinder find = new PathFinder(maze);
-            find.RightHandRule();
-            PathCheck check = new PathCheck(maze, config.inputPath());
-            System.out.println(check.verifyPath());
+
+            System.out.println(FormatPath.compact(config.inputPath()));
+            //Maze maze = new Maze(config.inputFile());
+            //PathFinder find = new PathFinder(maze);
+            //PathCheck check = new PathCheck(maze, config.inputPath());
+            //System.out.println(check.verifyPath());
 
             /*
              * if(config.inputPath==null){
