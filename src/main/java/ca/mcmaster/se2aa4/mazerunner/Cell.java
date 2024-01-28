@@ -15,7 +15,7 @@ public enum Cell {
     }
 
     public boolean equals(Cell cell){
-        return(character == cell.getCharacter());
+    return(this == cell);
    }
 
     @Override

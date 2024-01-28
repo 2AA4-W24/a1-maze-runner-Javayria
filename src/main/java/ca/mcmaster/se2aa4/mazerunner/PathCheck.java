@@ -4,7 +4,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class PathCheck{
     private String inputPath;
     public String validResult;
-    private final Maze maze;
+    private Maze maze;
     private Position EXIT;
     private Position currPosition;
 
@@ -19,6 +19,7 @@ public class PathCheck{
         if(!walkPath()){ 
             switchStart();
             if(!walkPath()){
+                System.out.println(currPosition.toString());
                 return "incorrect path";
             }
         }
@@ -27,26 +28,24 @@ public class PathCheck{
 
     private boolean walkPath(){
         String step = "";
-        for(char next: inputPath.toCharArray()){
-            step = String.valueOf(next);
-
-            if(!(step.equals("F"))){
-                currPosition.move(step);
-            }
-            else if(step.equals("F") && (checkFront())){
+        int i = 0;
+        while (i < inputPath.length()){
+            step = String.valueOf(inputPath.charAt(i));
+            if(!step.equals("F") || checkFront()){
                 currPosition.move(step);
             }
             else{
                 return false;
             }
+            i++;
         }
         return currPosition.equals(EXIT);
     }
 
     private boolean checkFront(){ 
         try{
-            Cell frontCell = maze.cellAt(currPosition.getForwardLocation());
-            return frontCell.equals(Cell.PASS); 
+            Cell frontCell = maze.cellAt(currPosition.getForwardLocation());  
+            return (frontCell.equals(Cell.PASS)); 
 
         } catch (IndexOutOfBoundsException e) {
             return false;

@@ -32,21 +32,38 @@ public class FormatPath {
         return result.append(prev).toString();
     }
 
-    public static String deCompact(String str){
-        StringBuilder result = new StringBuilder();
-        int expand = 0; //accounts for numbers such as 100  
+    public static String deCompact(String path){
+        boolean toCompress = false;
+        for (char i : path.toCharArray()) {
+            if (Character.isDigit(i)) {
+               toCompress = true;
+            }
+        }
+        if(toCompress){
+            return processPath(path);
+        } else{
+            return path;
+        }
+    }
 
-        for (char i: str.toCharArray()) {
-            if(Character.isDigit(i)){
-                expand = 10 * expand + Character.getNumericValue(i);
+    public static String processPath(String str){
+        StringBuilder result = new StringBuilder();  
+
+        for (int i = 0; i < str.length(); i++) {
+            char step = str.charAt(i);
+            if(Character.isLetter(step)){
+                result.append(step);
             }
             else{ 
-                while(expand > 0){
-                    result.append(i);
+                int expand = Character.getNumericValue(step);; //starts the new decompression
+                char prev = str.charAt(i+1);
+                while(expand > 1){
+                    result.append(prev);
                     expand--;
                 }
             }
         }
+
         return result.toString();
     }
 }

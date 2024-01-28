@@ -22,7 +22,7 @@ public class Main {
             System.out.println(output);
             
         } catch(ParseException pe) {
-            System.err.println(pe.getMessage());
+            logger.info(pe.getMessage());
             System.exit(1);
 
         } catch(IllegalArgumentException e) {
