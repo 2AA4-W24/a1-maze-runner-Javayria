@@ -7,8 +7,8 @@ public class Maze {
     private final int height;
 
     //Create a class for enterances and store their Location (Position + Direction)
-    Location EAST_ENTRY;
-    Location WEST_ENTRY;
+    private final Location EAST_ENTRY;
+    private final Location WEST_ENTRY;
 
     public Maze(String inputFile){
         MazeLoader loader = new MazeLoader();
@@ -16,8 +16,8 @@ public class Maze {
         this.maze = loader.generate(inputFile);
         this.height = setHeight();
         this.width = setWidth(); 
-        setEastEntry();
-        setWestEntry();
+        this.EAST_ENTRY = setEastEntry();
+        this.WEST_ENTRY = setWestEntry();
     }
     
     //make this immutable
@@ -31,23 +31,25 @@ public class Maze {
         return width;
     }
     
-    //hide in its own class later using Position (MATCH INDEX AND POSITION)
-    private void setEastEntry(){
+    private Location setEastEntry(){
+
         for(int i = 0; i < height; i++){
             Cell cell = maze[i][width-1];
             if(cell.equals(Cell.PASS)){
-                this.EAST_ENTRY = new Location(i,width-1);
+                return new Location(i,width-1);
             }
         }
+        return new Location(0,0); //invalid point
     }
 
-    private void setWestEntry(){
+    private Location setWestEntry(){
         for(int i = 0; i < height; i++){
             Cell cell = maze[i][0];
             if(cell.equals(Cell.PASS)){
-                this.WEST_ENTRY = new Location(i,0);
+                return new Location(i,0);
             }
         }
+        return new Location(0,0);
     }
 
     public Location getEntry(){
@@ -58,7 +60,7 @@ public class Maze {
         return EAST_ENTRY;
     }
 
-    protected Cell cellAt(Location location) { return this.maze[location.x][location.y]; }
+    public Cell cellAt(Location location) { return this.maze[location.getX()][location.getY()]; }
 
     public void printMaze(){
         int rows = maze.length;

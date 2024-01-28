@@ -2,35 +2,37 @@ package ca.mcmaster.se2aa4.mazerunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MazeSolver{
-    private final Maze maze;
+public class PathFinder{
+    private Maze maze;
     public String path = "";
     private Position current;
-    private Position EXIT;
+    private final Position ENTRY;
+    private final Position EXIT;
 
-    //half of the Maze
-    public MazeSolver(Maze theMaze){
+    public PathFinder(Maze theMaze){
         this.maze = theMaze;
-        this.current = new Position(theMaze.getEntry(), Direction.EAST);
-        System.out.println("Starting At: " + current.toString());
-        this.EXIT = new Position(theMaze.getExit(), Direction.EAST);
+        this.ENTRY= new Position(maze.getEntry(), Direction.EAST);
+        System.out.println("Starting At: " + ENTRY.toString());
+        this.EXIT = new Position(maze.getExit(), Direction.EAST);
     }
 
     public void RightHandRule(){
+        current = ENTRY;
         String step = "";
         do{
             if(checkRight()){
-                step = current.moveRightForward();  
+                step = "RF";  
             } 
             else if(checkFront()){
-                step = current.moveForward();
+                step = "F";
             } 
             else if(checkLeft()){
-                step = current.turnLeft();   
+                step = "L"; 
             }
             else{
-                step = current.turnAround();
+                step = "RR";
             }
+            current.move(step);
             path += step;
 
         } while(!isAtExit());
@@ -44,8 +46,12 @@ public class MazeSolver{
     }
 
     private boolean checkFront(){
-        Cell frontCell = maze.cellAt(current.getForwardLocation());
-        return frontCell.equals(Cell.PASS); 
+        try{
+            Cell frontCell = maze.cellAt(current.getForwardLocation());
+            return frontCell.equals(Cell.PASS); 
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     private boolean checkRight(){
@@ -61,4 +67,5 @@ public class MazeSolver{
         current.turnRight();
         return look;       
     }
+
 }

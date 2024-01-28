@@ -1,12 +1,9 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class Position{
 
-    private Location coordinates;
-    private Direction direction;
+    protected Location coordinates;
+    protected Direction direction;
     
     public Position(Location location, Direction dir){
         this.coordinates = location; 
@@ -18,48 +15,58 @@ public class Position{
     }
     
     protected Location getForwardLocation(){
-        Location next;
         if(direction == Direction.NORTH){
-            next = coordinates.getNorth();
+            return new Location(coordinates.getNorth());
         }
         else if(direction == Direction.SOUTH){
-            next = coordinates.getSouth();
+            return new Location(coordinates.getSouth());
         }
         else if(direction == Direction.EAST){
-            next = coordinates.getEast();
+            return new Location(coordinates.getEast());
+
         }else{
-            next = coordinates.getWest();
+            return new Location(coordinates.getWest());
         }
-        
-        return next;   
     }
 
-    public String moveForward(){
-        Location newCoords = getForwardLocation();
-        this.coordinates.x = newCoords.x;
-        this.coordinates.y = newCoords.y;
-        return "F";
+    protected void move(String step){
+
+        if(step.equals("F")){
+            moveForward();
+        }
+        else if(step.equals("R")){
+            turnRight();
+        }
+        else if(step.equals("L")){
+            turnLeft();
+        }
+        else if(step.equals("RF")){
+            moveRightForward();
+        }
+        else if(step.equals("RR")){
+            turnAround();
+        }
     }
 
-    public String moveRightForward(){
-        turnRight();
+    protected void moveForward(){
+        this.coordinates = new Location(getForwardLocation());
+    }
+
+    protected void moveRightForward(){ //PERHAPS ADD LEFT FORWARD
+        turnRight(); 
         moveForward();
-        return "RF";
     }
-
-    public String turnRight(){
+     
+    protected void turnRight(){
         direction = direction.yourRight();
-        return "R";
     }
 
-    public String turnLeft(){
+    protected void turnLeft(){
         direction = direction.yourLeft();
-        return "L";
     }
 
-    public String turnAround(){
+    protected void turnAround(){
         direction = direction.oppositeDirection();
-        return "RR";
     }
 
     @Override

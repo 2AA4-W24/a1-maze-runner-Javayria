@@ -14,10 +14,11 @@ public class Main {
         try {
             Configuration config = config(args);
             logger.info(config);
-            Maze theMaze = new Maze(config.inputFile()); //generates the maze object
-            theMaze.printMaze();
-            MazeSolver theSolver = new MazeSolver(theMaze);
-            theSolver.RightHandRule();
+            Maze maze = new Maze(config.inputFile());
+            PathFinder find = new PathFinder(maze);
+            find.RightHandRule();
+            PathCheck check = new PathCheck(maze, config.inputPath());
+            System.out.println(check.verifyPath());
 
             /*
              * if(config.inputPath==null){
@@ -58,6 +59,8 @@ public class Main {
         }
         return new Configuration(inputFile, inputPath);        
     }
+
+    //return new Configuration(inputFile)
     
     //finalized check for PathFormat
     private static boolean validPathFormat(String inputPath){
