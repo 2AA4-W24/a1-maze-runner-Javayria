@@ -3,20 +3,21 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PathFinder{
-    private final Maze maze;
+    private Maze maze;
     public String path = "";
     private Position current;
-    private Position EXIT;
+    private final Position ENTRY;
+    private final Position EXIT;
 
-    //half of the Maze
     public PathFinder(Maze theMaze){
         this.maze = theMaze;
-        this.current = new Position(theMaze.getEntry(), Direction.EAST);
-        System.out.println("Starting At: " + current.toString());
-        this.EXIT = new Position(theMaze.getExit(), Direction.EAST);
+        this.ENTRY= new Position(maze.getEntry(), Direction.EAST);
+        System.out.println("Starting At: " + ENTRY.toString());
+        this.EXIT = new Position(maze.getExit(), Direction.EAST);
     }
 
     public void RightHandRule(){
+        current = ENTRY;
         String step = "";
         do{
             if(checkRight()){

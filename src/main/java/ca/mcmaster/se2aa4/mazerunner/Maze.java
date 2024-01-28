@@ -60,7 +60,7 @@ public class Maze {
         return EAST_ENTRY;
     }
 
-    public Cell cellAt(Location location) { return this.maze[location.x][location.y]; }
+    public Cell cellAt(Location location) { return this.maze[location.getX()][location.getY()]; }
 
     public void printMaze(){
         int rows = maze.length;

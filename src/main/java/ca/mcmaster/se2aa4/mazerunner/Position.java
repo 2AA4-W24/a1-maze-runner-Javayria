@@ -15,20 +15,18 @@ public class Position{
     }
     
     protected Location getForwardLocation(){
-        Location next;
         if(direction == Direction.NORTH){
-            next = coordinates.getNorth();
+            return new Location(coordinates.getNorth());
         }
         else if(direction == Direction.SOUTH){
-            next = coordinates.getSouth();
+            return new Location(coordinates.getSouth());
         }
         else if(direction == Direction.EAST){
-            next = coordinates.getEast();
+            return new Location(coordinates.getEast());
+
         }else{
-            next = coordinates.getWest();
+            return new Location(coordinates.getWest());
         }
-        
-        return next;   
     }
 
     protected void move(String step){
@@ -51,9 +49,7 @@ public class Position{
     }
 
     protected void moveForward(){
-        Location newCoords = getForwardLocation();
-        this.coordinates.x = newCoords.x;
-        this.coordinates.y = newCoords.y;
+        this.coordinates = new Location(getForwardLocation());
     }
 
     protected void moveRightForward(){ //PERHAPS ADD LEFT FORWARD

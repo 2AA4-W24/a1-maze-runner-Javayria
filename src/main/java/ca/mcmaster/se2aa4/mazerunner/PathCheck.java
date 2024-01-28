@@ -3,59 +3,64 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathCheck{
     private String inputPath;
-    private boolean validResult;
-    private Maze maze;
-    private Position current;
+    public String validResult;
+    private final Maze maze;
     private Position EXIT;
-    private int next;
+    private Position currPosition;
 
     public PathCheck(Maze theMaze, String inputPath){
         this.inputPath = inputPath;
         this.maze = theMaze;
-        this.current = new Position(maze.getEntry(), Direction.EAST);
-        System.out.println("NEW ENTRY POINT: " + maze.getEntry().toString());
+        this.currPosition = new Position(maze.getEntry(), Direction.EAST);
         this.EXIT = new Position(maze.getExit(), Direction.EAST);
-        System.out.println("CURRENT STARTING POINT: " + EXIT.toString());
-        System.out.println(walkPath()); 
     }
 
-    //read step, check if its valid, follow step, check if you are at exit (yes, then done!) - otherwise keep going!
+    public String verifyPath(){
+        if(!walkPath()){ 
+            switchStart();
+            if(!walkPath()){
+                return "incorrect path";
+            }
+        }
+        return "Correct path";
+    }
 
-    public String walkPath(){
+    private boolean walkPath(){
         String step = "";
         for(char next: inputPath.toCharArray()){
             step = String.valueOf(next);
             System.out.println(step);
 
             if(!(step.equals("F"))){
-                current.move(step);
+                currPosition.move(step);
                 System.out.println(step);
             }
             else if(step.equals("F") && (checkFront())){
-                current.move(step);
+                currPosition.move(step);
                 System.out.println(step);
-
             }
             else{
-               return "incorrect";
+                return false;
             }
         }
-        System.out.println(current.coordinates.toString());
-
-        if(current.equals(EXIT)){
-            return("correct");
-        }else{
-            return("incorrect");
-        }
+        return currPosition.equals(EXIT);
     }
 
-    private boolean checkFront(){ //put it in maze?
-        System.out.println((current.getForwardLocation()).toString());
-        Cell frontCell = maze.cellAt(current.getForwardLocation());
-        System.out.println(frontCell.toString());
-        return frontCell.equals(Cell.PASS); 
+    private boolean checkFront(){ 
+        try{
+            Cell frontCell = maze.cellAt(currPosition.getForwardLocation());
+            return frontCell.equals(Cell.PASS); 
+
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        } 
     }
- 
+
+    private void switchStart(){
+        this.currPosition = new Position(maze.getExit(), Direction.WEST);
+        this.EXIT = new Position(maze.getEntry(), Direction.WEST);
+    }
+
 }
 
 
