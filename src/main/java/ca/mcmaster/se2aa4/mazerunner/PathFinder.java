@@ -10,7 +10,7 @@ public class PathFinder implements ExploreMode{
         setUp(theMaze);
     }
 
-    public String RightHandRule(){
+    private String RightHandRule(){
         String step = "";
         do{
             if(checkRight()){

@@ -13,7 +13,7 @@ public class PathCheck implements ExploreMode{
         setUp(theMaze);
     }
 
-    public String verifyPath(){
+    private String verifyPath(){
         if(!walkPath()){ 
             switchStart();
             if(!walkPath()){
