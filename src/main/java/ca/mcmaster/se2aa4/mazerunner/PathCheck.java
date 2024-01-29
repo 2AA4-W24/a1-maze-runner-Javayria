@@ -17,11 +17,10 @@ public class PathCheck implements ExploreMode{
         if(!walkPath()){ 
             switchStart();
             if(!walkPath()){
-                System.out.println(currPosition.toString());
                 return "incorrect path";
             }
         }
-        return "Correct path";
+        return "correct path";
     }
 
     private boolean walkPath(){
