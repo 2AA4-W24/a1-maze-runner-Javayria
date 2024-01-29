@@ -1,7 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 //reasoning for making pathcheck seperate class instead of a method for Path is because thats not Path's repsonsibility - it's the explorer's!!!
 
-public class PathCheck{
+public class PathCheck implements ExploreMode{
     private String inputPath;
     public String validResult;
     private Maze maze;
@@ -11,8 +11,7 @@ public class PathCheck{
     public PathCheck(Maze theMaze, String inputPath){
         this.inputPath = inputPath;
         this.maze = theMaze;
-        this.currPosition = new Position(maze.getEntry(), Direction.EAST);
-        this.EXIT = new Position(maze.getExit(), Direction.EAST);
+        setUp();
     }
 
     public String verifyPath(){
@@ -33,7 +32,7 @@ public class PathCheck{
             step = String.valueOf(inputPath.charAt(i));
             if(!step.equals("F") || checkFront()){
                 currPosition.move(step);
-            }
+            }   
             else{
                 return false;
             }
@@ -57,6 +56,16 @@ public class PathCheck{
         this.EXIT = new Position(maze.getEntry(), Direction.WEST);
     }
 
+    @Override
+    public void setUp() {
+        this.currPosition = new Position(maze.getEntry(), Direction.EAST);
+        this.EXIT = new Position(maze.getExit(), Direction.EAST);
+    }
+
+    @Override
+    public String explore() {
+        return(verifyPath());
+    }
 }
 
 

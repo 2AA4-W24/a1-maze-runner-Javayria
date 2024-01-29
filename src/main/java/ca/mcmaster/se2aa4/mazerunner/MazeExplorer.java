@@ -6,8 +6,8 @@ import org.apache.logging.log4j.Logger;
 public class MazeExplorer{
     private static final Logger logger = LogManager.getLogger();
 
-    protected PathFinder find;
-    protected PathCheck check;
+    public PathFinder find;
+    public PathCheck check;
 
     ///REASONING - wanted to implement the path verification/finding as different exploration modes!
     public MazeExplorer(Maze maze){
@@ -22,16 +22,14 @@ public class MazeExplorer{
         if(path==null){
             logger.info(("PATH FINDER MODE ACTIVATED -----"));
             MazeExplorer explorer = new MazeExplorer(maze);
-            return(explorer.find.RightHandRule());
+            return(explorer.find.explore());
 
         }
         else{
             logger.info("PATH VERIFIER MODE ACTIVATED -----");
             MazeExplorer explorer = new MazeExplorer(maze, FormatPath.processPath(path));
             logger.info(FormatPath.processPath(path));
-            return(explorer.check.verifyPath());
+            return(explorer.check.explore());
         }
     }
-
-   
 }

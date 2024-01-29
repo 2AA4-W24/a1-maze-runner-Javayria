@@ -1,17 +1,14 @@
 package ca.mcmaster.se2aa4.mazerunner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class PathFinder{
+public class PathFinder implements ExploreMode{
     private Maze maze;
     public String path = "";
     private Position current;
-    private final Position EXIT;
+    private Position EXIT;
 
     public PathFinder(Maze theMaze){
         this.maze = theMaze;
-        this.current= new Position(maze.getEntry(), Direction.EAST);
-        this.EXIT = new Position(maze.getExit(), Direction.EAST);
+        setUp();
     }
 
     public String RightHandRule(){
@@ -61,6 +58,17 @@ public class PathFinder{
         boolean look = checkFront();   
         current.turnRight();
         return look;       
+    }
+
+    @Override
+    public void setUp() {
+        this.current= new Position(maze.getEntry(), Direction.EAST);
+        this.EXIT = new Position(maze.getExit(), Direction.EAST);
+    }
+
+    @Override
+    public String explore() {
+        return RightHandRule();
     }
 
 }
