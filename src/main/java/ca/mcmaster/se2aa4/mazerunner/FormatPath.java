@@ -54,6 +54,8 @@ public class FormatPath {
             if(Character.isLetter(step)){
                 result.append(step);
             }
+            else if(step == ' '){
+            }
             else{ 
                 int expand = Character.getNumericValue(step);; //starts the new decompression
                 char prev = str.charAt(i+1);

@@ -52,7 +52,7 @@ public record Configuration(String inputFile, String inputPath) {
         for (int i = 0 ; i < inputPath.length() ; i++) {
             char c = inputPath.charAt(i);
             if (!Character.isDigit(c)){
-                if ((c != 'F') && (c != 'R') && (c != 'L')){
+                if ((c != 'F') && (c != 'R') && (c != 'L') && (c != ' ')){
                     valid = false;
                 }
             }
