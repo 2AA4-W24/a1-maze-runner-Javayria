@@ -61,7 +61,33 @@ public class Maze {
         return EAST_ENTRY;
     }
 
-    public Cell cellAt(Location location) { return this.maze[location.getX()][location.getY()]; }
+    public boolean checkFront(Position current){ 
+        try{
+            Cell frontCell = cellAt(current.getForwardLocation());  
+            return (frontCell.equals(Cell.PASS)); 
+
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        } 
+    }
+
+    public boolean checkRight(Position current){
+        current.turnRight();
+        boolean look = checkFront(current);   
+        current.turnLeft();
+        return look;            
+    }
+
+    public boolean checkLeft(Position current){
+        current.turnLeft();
+        boolean look = checkFront(current);   
+        current.turnRight();
+        return look;       
+    }
+
+    private Cell cellAt(Location location) { 
+        return this.maze[location.getX()][location.getY()]; 
+    }
 
     public void printMaze(){
         int rows = maze.length;

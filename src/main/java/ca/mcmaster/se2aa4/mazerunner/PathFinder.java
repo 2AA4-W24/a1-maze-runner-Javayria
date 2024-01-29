@@ -13,13 +13,13 @@ public class PathFinder implements ExploreMode{
     private String RightHandRule(){
         String step = "";
         do{
-            if(checkRight()){
+            if(maze.checkRight(current)){
                 step = "RF";  
             } 
-            else if(checkFront()){
+            else if(maze.checkFront(current)){
                 step = "F";
             } 
-            else if(checkLeft()){
+            else if(maze.checkLeft(current)){
                 step = "L"; 
             }
             else{
@@ -34,29 +34,6 @@ public class PathFinder implements ExploreMode{
 
     private boolean isAtExit(){
         return current.equals(EXIT);
-    }
-
-    private boolean checkFront(){
-        try{
-            Cell frontCell = maze.cellAt(current.getForwardLocation());
-            return frontCell.equals(Cell.PASS); 
-        } catch (IndexOutOfBoundsException e) {
-            return false;
-        }
-    }
-
-    private boolean checkRight(){
-        current.turnRight();
-        boolean look = checkFront();   
-        current.turnLeft();
-        return look;            
-    }
-
-    private boolean checkLeft(){
-        current.turnLeft();
-        boolean look = checkFront();   
-        current.turnRight();
-        return look;       
     }
 
     @Override
