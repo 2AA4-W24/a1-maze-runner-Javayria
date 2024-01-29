@@ -13,15 +13,14 @@ public class PathCheck implements ExploreMode{
         setUp(theMaze);
     }
 
-    public String verifyPath(){
+    private String verifyPath(){
         if(!walkPath()){ 
             switchStart();
             if(!walkPath()){
-                System.out.println(currPosition.toString());
                 return "incorrect path";
             }
         }
-        return "Correct path";
+        return "correct path";
     }
 
     private boolean walkPath(){

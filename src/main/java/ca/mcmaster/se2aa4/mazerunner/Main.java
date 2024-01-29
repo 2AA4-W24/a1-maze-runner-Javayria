@@ -12,10 +12,7 @@ public class Main {
     public static void main(String[] inputs) {
         try {
             Configuration config = Configuration.config(inputs);
-            logger.info(config);
-
             Maze maze = new Maze(config.inputFile());
-
             MazeExplorer explorer = new MazeExplorer(maze);
             String output = explorer.startExploring(maze, config.inputPath());
             System.out.println(output);
