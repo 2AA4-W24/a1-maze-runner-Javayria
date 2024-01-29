@@ -10,8 +10,7 @@ public class PathCheck implements ExploreMode{
 
     public PathCheck(Maze theMaze, String inputPath){
         this.inputPath = inputPath;
-        this.maze = theMaze;
-        setUp();
+        setUp(theMaze);
     }
 
     public String verifyPath(){
@@ -57,7 +56,8 @@ public class PathCheck implements ExploreMode{
     }
 
     @Override
-    public void setUp() {
+    public void setUp(Maze theMaze) {
+        this.maze = theMaze;
         this.currPosition = new Position(maze.getEntry(), Direction.EAST);
         this.EXIT = new Position(maze.getExit(), Direction.EAST);
     }

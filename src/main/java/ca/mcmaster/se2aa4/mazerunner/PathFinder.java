@@ -7,8 +7,7 @@ public class PathFinder implements ExploreMode{
     private Position EXIT;
 
     public PathFinder(Maze theMaze){
-        this.maze = theMaze;
-        setUp();
+        setUp(theMaze);
     }
 
     public String RightHandRule(){
@@ -61,7 +60,8 @@ public class PathFinder implements ExploreMode{
     }
 
     @Override
-    public void setUp() {
+    public void setUp(Maze theMaze) {
+        this.maze = theMaze;
         this.current= new Position(maze.getEntry(), Direction.EAST);
         this.EXIT = new Position(maze.getExit(), Direction.EAST);
     }
