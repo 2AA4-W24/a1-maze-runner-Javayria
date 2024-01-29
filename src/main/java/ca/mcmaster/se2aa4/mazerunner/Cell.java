@@ -1,6 +1,8 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-//represents what type of cell it is within the maze grid
+/*
+ * Type Cell represented as a WALL or PASS
+ */
 public enum Cell {
     WALL('#'), PASS(' ');
 

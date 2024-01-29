@@ -1,7 +1,13 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+/*
+ * Stores and updates the relative position of an object within the maze  
+ */
 public class Position{
 
+    /*
+     * Position is the combination of a Location object and Direction type
+     */
     protected Location coordinates;
     protected Direction direction;
     
@@ -14,6 +20,10 @@ public class Position{
         return ((coordinates.equals(position.coordinates)) && (direction == position.direction));
     }
     
+    /*
+     * Accesses the coordinates of front Cell depending on facing direction
+     * @return Location coordinates of front Cell
+     */
     protected Location getForwardLocation(){
         if(direction == Direction.NORTH){
             return new Location(coordinates.getNorth());
@@ -29,6 +39,9 @@ public class Position{
         }
     }
 
+    /*
+     * Updates position according to given step
+     */
     protected void move(String step){
 
         if(step.equals("F")){
@@ -48,23 +61,38 @@ public class Position{
         }
     }
 
+    /*
+     * Update coordinates to those of front Cell 
+     */
     protected void moveForward(){
         this.coordinates = new Location(getForwardLocation());
     }
 
-    protected void moveRightForward(){ //PERHAPS ADD LEFT FORWARD
+    /*
+     * Update direction to relative rightand moves forward
+     */
+    protected void moveRightForward(){ 
         turnRight(); 
         moveForward();
     }
      
+    /*
+     * Update direction to relative right
+     */
     protected void turnRight(){
         direction = direction.yourRight();
     }
 
+    /*
+     * Update direction to relative left
+     */
     protected void turnLeft(){
         direction = direction.yourLeft();
     }
 
+    /*
+     * Performs a U-turn and updates to opposite of facing direction
+     */
     protected void turnAround(){
         direction = direction.oppositeDirection();
     }

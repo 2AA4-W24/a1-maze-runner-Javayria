@@ -1,25 +1,33 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+/*
+ * Finds a path from entry to exit of a given maze
+ */
 public class PathFinder implements ExploreMode{
     private Maze maze;
     public String path = "";
     private Position current;
     private Position EXIT;
+ 
 
     public PathFinder(Maze theMaze){
         setUp(theMaze);
     }
 
+    /*
+     * Implements the Right Hand Rule to solve a maze
+     * @returns the factorized String path
+     */
     private String RightHandRule(){
         String step = "";
         do{
-            if(checkRight()){
+            if(maze.checkRight(current)){
                 step = "RF";  
             } 
-            else if(checkFront()){
+            else if(maze.checkFront(current)){
                 step = "F";
             } 
-            else if(checkLeft()){
+            else if(maze.checkLeft(current)){
                 step = "L"; 
             }
             else{
@@ -32,33 +40,16 @@ public class PathFinder implements ExploreMode{
         return FormatPath.compact(path);
     }
 
+    /*
+     * Check if current position is at EXIT
+     */
     private boolean isAtExit(){
         return current.equals(EXIT);
     }
 
-    private boolean checkFront(){
-        try{
-            Cell frontCell = maze.cellAt(current.getForwardLocation());
-            return frontCell.equals(Cell.PASS); 
-        } catch (IndexOutOfBoundsException e) {
-            return false;
-        }
-    }
-
-    private boolean checkRight(){
-        current.turnRight();
-        boolean look = checkFront();   
-        current.turnLeft();
-        return look;            
-    }
-
-    private boolean checkLeft(){
-        current.turnLeft();
-        boolean look = checkFront();   
-        current.turnRight();
-        return look;       
-    }
-
+    /*
+     * Implemented methods of ExploreMaze interface
+     */
     @Override
     public void setUp(Maze theMaze) {
         this.maze = theMaze;

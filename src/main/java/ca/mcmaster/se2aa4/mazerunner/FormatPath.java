@@ -1,7 +1,15 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+/*
+ * Converts between different formats for path
+ */
 public class FormatPath { 
 
+    /*
+     * Convert path from canonlical to factorized
+     * @param String inputPath
+     * @return String factorized version of inputPath
+     */
     public static String compact(String str){
         StringBuilder result = new StringBuilder();
         char[] array = str.toCharArray();
@@ -25,13 +33,21 @@ public class FormatPath {
             prev = curr;
 
         }
-        //last iteration
+        
+        /*
+         * Handle last iteration
+         */
         if(num>1){
             result.append(num);
         }
         return result.append(prev).toString();
     }
 
+    /*
+     * Converts path from factorized to canonical if there is a digit in the sequence 
+     * @param String inputPath
+     * @return String canonical version of inputPath
+     */
     public static String deCompact(String path){
         boolean toCompress = false;
         for (char i : path.toCharArray()) {
@@ -46,6 +62,9 @@ public class FormatPath {
         }
     }
 
+    /*
+     * Performs the processing for factorized to canonical
+     */
     public static String processPath(String str){
         StringBuilder result = new StringBuilder();  
 
