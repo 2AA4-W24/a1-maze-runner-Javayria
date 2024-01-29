@@ -1,5 +1,9 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+/*
+ * Type Direction - accesses relative directions
+ */
+
 public enum Direction {
     NORTH{
         @Override

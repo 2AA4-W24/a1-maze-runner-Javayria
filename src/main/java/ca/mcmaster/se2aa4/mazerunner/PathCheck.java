@@ -66,7 +66,10 @@ public class PathCheck implements ExploreMode{
         }
         return currPosition.equals(EXIT);
     }
-
+     
+    /*
+     * Start at the Eastern_Entry facing WEST
+     */
     private void switchStart(){
         this.currPosition = new Position(maze.getExit(), Direction.WEST);
         this.EXIT = new Position(maze.getEntry(), Direction.WEST);

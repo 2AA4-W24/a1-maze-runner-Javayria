@@ -1,18 +1,25 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-//stores the Maze as an entity along with its data (immutable class)
+/*
+*Stores the Maze along with its data 
+*/
 public class Maze {
-    private final Cell[][] maze; //DEFINED [ROWS][COLUMNS]
+
+    /*
+     * A Cell in Cell[][] is referenced vy [row][column]
+     */
+    private final Cell[][] maze; 
     private final int width;
     private final int height;
-
-    //Create a class for enterances and store their Location (Position + Direction)
     private final Location EAST_ENTRY;
     private final Location WEST_ENTRY;
 
     public Maze(String inputFile){
+
+        /*
+         * Get Cell[][] from MazeLoader and set all maze attributes
+         */
         MazeLoader loader = new MazeLoader();
-        //perform a deep copy of the maze
         this.maze = loader.generate(inputFile);
         this.height = setHeight();
         this.width = setWidth(); 
@@ -20,7 +27,7 @@ public class Maze {
         this.WEST_ENTRY = setWestEntry();
     }
     
-    //make this immutable
+    
     private int setHeight(){
         int height = maze.length;
         return height;
@@ -31,6 +38,10 @@ public class Maze {
         return width;
     }
     
+    /*
+     * Search the last column of Maze for EastEntry
+     * @return Location of EastEntry
+     */
     private Location setEastEntry(){
 
         for(int i = 0; i < height; i++){
@@ -42,6 +53,10 @@ public class Maze {
         return new Location(0,0); //invalid point
     }
 
+    /*
+     * Search the first column of Maze for WestEntry
+     * @return Location of WestEntry
+     */
     private Location setWestEntry(){
         for(int i = 0; i < height; i++){
             Cell cell = maze[i][0];
@@ -53,6 +68,9 @@ public class Maze {
         return new Location(0,0);
     }
 
+    /*
+     * Public accessors to get locations for both entrances
+     */
     public Location getEntry(){
         return WEST_ENTRY;
     }
@@ -61,6 +79,10 @@ public class Maze {
         return EAST_ENTRY;
     }
 
+    /*
+     * Check if Cell in front of current position is valid
+     * @return true if Cell is PASS, false if WALL
+     */
     public boolean checkFront(Position current){ 
         try{
             Cell frontCell = cellAt(current.getForwardLocation());  
@@ -71,6 +93,10 @@ public class Maze {
         } 
     }
 
+     /*
+     * Check if Cell to the right of current position is valid
+     * @return true if Cell is PASS, false if WALL
+     */
     public boolean checkRight(Position current){
         current.turnRight();
         boolean look = checkFront(current);   
@@ -78,6 +104,10 @@ public class Maze {
         return look;            
     }
 
+    /*
+     * Check if Cell to the left of current position is valid
+     * @return true if Cell is PASS, false if WALL
+     */
     public boolean checkLeft(Position current){
         current.turnLeft();
         boolean look = checkFront(current);   
@@ -88,7 +118,8 @@ public class Maze {
     private Cell cellAt(Location location) { 
         return this.maze[location.getX()][location.getY()]; 
     }
-
+    
+    
     public void printMaze(){
         int rows = maze.length;
         int columns = maze[0].length;

@@ -1,15 +1,23 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+/*
+ * Finds a path from entry to exit of a given maze
+ */
 public class PathFinder implements ExploreMode{
     private Maze maze;
     public String path = "";
     private Position current;
     private Position EXIT;
+ 
 
     public PathFinder(Maze theMaze){
         setUp(theMaze);
     }
 
+    /*
+     * Implements the Right Hand Rule to solve a maze
+     * @returns the factorized String path
+     */
     private String RightHandRule(){
         String step = "";
         do{
@@ -32,10 +40,16 @@ public class PathFinder implements ExploreMode{
         return FormatPath.compact(path);
     }
 
+    /*
+     * Check if current position is at EXIT
+     */
     private boolean isAtExit(){
         return current.equals(EXIT);
     }
 
+    /*
+     * Implemented methods of ExploreMaze interface
+     */
     @Override
     public void setUp(Maze theMaze) {
         this.maze = theMaze;

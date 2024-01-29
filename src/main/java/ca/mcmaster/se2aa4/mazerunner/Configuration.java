@@ -8,6 +8,9 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Options;
 
+/*
+ * Processes and stores inputs from the command line
+ */
 public record Configuration(String inputFile, String inputPath) {
     
         public Configuration {
@@ -16,7 +19,6 @@ public record Configuration(String inputFile, String inputPath) {
                 throw new IllegalArgumentException("Given file does not exist.");
             } 
             
-            //take the path_sequence input from user and verify if it is provided in a valid format
             if (inputPath != null){
                 if(!validPathFormat(inputPath)){
                     throw new IllegalArgumentException("Path is not provided in a valid form.");
@@ -46,7 +48,9 @@ public record Configuration(String inputFile, String inputPath) {
     }
 
     
-    //finalized check for PathFormat
+    /*
+     * Validates the inputPath to only include F, R, L, and digits
+     */
     private boolean validPathFormat(String inputPath){
         boolean valid=true;
         for (int i = 0 ; i < inputPath.length() ; i++) {
@@ -59,6 +63,5 @@ public record Configuration(String inputFile, String inputPath) {
         } 
         return valid;
     }
-
 } 
 
